@@ -445,5 +445,66 @@ P.S. 혹시나  Android 다운로드 폴더에 저장하신 Samsung Health 데�
 추가적으로 테스트 진행해보곘습니다. I워치 버전 명시 부탁요)
 
 
+CPU 리소스체크
+Sub listfilter()
+
+r2 = 3
+isNewDate = Fasle
+For r = 3 To 200000
+    If Cells(r, 1).Value = "" Then Exit Sub
+    
+    If Second(Cells(r, 1).Value) = 0 Then
+        Cells(1, 16).Value = r
+        
+        If Not isNewDate Then
+            If Hour(Cells(r, 1).Value) = 0 And Minute(Cells(r, 1).Value) = 0 And Second(Cells(r, 1).Value) = 0 Then
+                isNewDate = True
+            End If
+            
+        End If
+        
+        If isNewDate Then
+            Cells(r2, 11).Value = "09-10 " & Right("00" & Hour(Cells(r, 1).Value), 2) & ":" & Right("00" & Minute(Cells(r, 1).Value), 2)
+        Else
+            Cells(r2, 11).Value = "09-09 " & Right("00" & Hour(Cells(r, 1).Value), 2) & ":" & Right("00" & Minute(Cells(r, 1).Value), 2)
+        End If
+        
+        Cells(r2, 12).Value = Cells(r, 9).Value
+        
+        r2 = r2 + 1
+        
+    
+    End If
+
+Next
+
+End Sub
+
+
+메모리체크스크립트
+
+Sub listfilter()
+    r2 = 3
+    For r = 3 To 100000
+        If Cells(r, 1).Value = "" Then Exit For
+        
+        If Second(Cells(r, 1).Value) = 0 Then
+            Cells(1, 13).Value = r
+            Cells(r2, 10).Value = Cells(r, 1).Value
+            Cells(r2, 11).Value = 100 * Cells(r, 4).Value / Cells(r, 3).Value
+            r2 = r2 + 1
+        End If
+        
+    
+    Next
+    
+    Cells(1, 13).Value = r
+
+End Sub
+
+
+
+
+
 
 
