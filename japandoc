@@ -1,58 +1,223 @@
-1.	更新履歴	2
-2.	背景（要求事項）	3
-3.	目的（要件定義）	3
-4.	要件詳細	4
-4.1.	NZ2Cのログ収集	5
-4.2.	Liplus機能のTX-101・NZ2C対応	5
-4.2.1.	Fab information画面	5
-4.2.2.	Command select画面	5
-4.2.3.	Parameter画面	7
-4.3.	TM VCS可視化機能開発	17
-5.	成果物	17
-6.	テスト要件	18
- 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	1/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+
+ 	更新履歴	3
+ 	背景（要求事項）	4
+ 	目的（要件定義）	4
+ 	要件詳細	5
+4.1.	NZ2C のログ収集 【EST-00043】	5
+4.1.1.	NZ2C のステーション対応	5
+4.1.2.	対象イベントモデル一覧	5
+4.1.3.	ジョブ毎のファイル管理対応	8
+4.2.	Liplus 機能の TX-101・NZ2C 対応	8
+4.2.1.	データ確認（Data confirmation）	8
+4.2.1.1.	装置状態（Machine status）	8
+4.2.1.1.1.	Fab information 画面	8
+「Tool」タブ 【EST-00045】	8
+「Anomaly」タブ	8
+「Tool Configuration」タブ 【EST-00044】	8
+4.2.1.1.2.	Tool information 【EST-00045】	10
+Event	10
+Anomaly	10
+4.2.1.2.	データ分析（Data analysis select） 【EST-00045】	10
+4.2.1.2.1.	Data trend monitor	10
+4.2.1.2.2.	Utilization monitor	13
+4.2.1.3.	Wafer map	13
+4.2.1.4.	QC	13
+4.2.1.4.1.	CF 【EST-00044】	13
+4.2.1.4.2.	FLARE	18
+4.2.1.4.3.	IUC	18
+4.2.1.4.4.	LIMC	18
+4.2.1.4.5.	DPOS & Missing check	18
+4.2.1.4.6.	Dispenser accumulation check	18
+4.2.1.4.7.	Hydra status	18
+4.2.1.4.8.	TM データ可視化機能開発 【EST-00044】	18
+ジョブ毎のグラフ対応	18
+ステーション毎のグラフ対応	19
+4.2.1.5.	コマンド（Command select） 【EST-00044】	20
+4.2.1.5.1.	Command select	20
+4.2.1.5.2.	Command result	21
+4.2.1.6.	パラメータ（Parameter） 【EST-00044】	22
+4.2.1.6.1.	System parameter タブ	22
+4.2.1.6.2.	Job parameter タブ	25
+4.2.2.	シミュレーション（Simulation）	26
+4.2.2.1.	Wafer output optimizer	26
+4.2.2.2.	Recipe optimization	26
+4.2.3.	履歴確認（History） 【EST-00045】	26
+4.2.3.1.	「Event history」タブ	26
+4.2.3.2.	「Error history」タブ	26
+4.2.3.3.	「Anomaly history」タブ	26
+4.2.3.4.	「Parameter history」タブ	26
+4.3.	Liplus の機種共通化 【EST-00045】	26
+4.3.1.	検索部のシリーズコンボボックス	26
+4.4.	装置毎にステーション情報のマスタデータ化 【EST-00045】	28
+4.4.1.	ステーション情報管理	28
+4.4.2.	未使用ステーションの対応	28
+ 	成果物	29
+ 	テスト要件	29
+
+
+
+
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	13/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+비코오 쇼오닌 신사 셋케에 
+코오신히즈케 시메에 코오신히즈케 시메에 코오신히즈케 니센니주우고넨시치가츠산주우이치니치 시메에   
+티이에이치 반고오 이이에스티이욘주우산카라욘주우고 톤에이치 메에 티이엣쿠스햐쿠이치에누젯토니시이 리소구라휘이 푸라스 카이하츠 훼에즈산 페에지스우 산주우분노주우산 탄토오 지이아아루 디이에스 탄토오샤 리 케에레츠 키슈 리소구라휘이 푸라스 테에한 이치 레에
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 1.	更新履歴
 訂版	変更年月日	変更概要	担当者
-1.0	2025/7/XX	初版作成	李 景烈
+1.0	2025/7/31	初版作成	李 景烈
 			
 			
 			
 			
 			
 
- 
-2.	背景（要求事項）
-KrF／i線装置では、ユーザーの生産性向上やキヤノンエンジニアによる保守サポートの質向上を実現するソリューションサービス「Lithography Plus」を展開している。これまで、新製品TX-101に対して「Lithography Plus」の導入を目的に開発を進めている。
-今回の開発では、TX-101に続き、新製品NZ2Cに対しても「Lithography Plus」を展開することで、ユーザーの生産性向上と保守サポートの質向上を実現することを目的としている。NZ2Cの市場拡大に伴い、安定した装置運用と迅速な保守対応が求められており、既存サポートツールの統合を通じて、運用負荷の軽減と効率化を図る。
-すなわち、NZ2Cの競争力強化と安定運用を支えるために、「Lithography Plus」の展開は不可欠であり、本開発はその基盤構築を目的としている。
+이치 코오신리레키 
+테에한 헨코오넨갓피 헨코오가이요오 탄토오샤 
+이치 레에 니센니주우고넨시치가츠산주우이치니치 쇼한 사쿠세에
 
-3.	目的（要件定義）
-Lithography PlusをTX-101およびNZ2Cに対応させるために2024年調査分析を実施し、その結果に基づき、TX-101に対応させるための第一段階としてイベント履歴、エラー発生履歴、パラメータ変更履歴の機能を開発している。
-それに引き続きTX-10１の顧客先で運営するための必須機能を実現して運営を開始するために以下の機能の開発をする。
-1．TX-101機種対応			(EST-00038)
-2．DPOS＆Missing check機能開発		(EST-00039)
-3．Dispenser accumulation check機能開発	(EST-00040)
-4．Hydra status機能開発			(EST-00041)
 
-これらの機能を実現する際には、KrF／i線装置向けの機能を損なわないようにすることが重要である。
 
- 
-4.	要件詳細
+ 背景（要求事項）
+KrF／i 線装置では、ユーザーの生産性向上およびキヤノンエンジニアによる保守サポートの品質向上を実現するソリューションサービス「Lithography Plus」を展開している。これまで新製品 TX-101 に対しては、「Lithography Plus」の導入を目的とした開発を進めてきている。
+하이케에 요오큐우지코오 케에아아루에후아이 센소오치데와 유우자아노 세에산세에 코오조오 오요비 캬논엔지니아니 요루 호슈사포오토노 힌시츠코오조오오 지츠겐스루 소류우쇼사아비스 리소구라휘이 푸라스 오 텐카이시테이루 코레마데 신세에힌 티이엣쿠스햐쿠이치 니 타이시테와 리소구라휘이 푸라스 노 도오뉴우오 모쿠테키토 시타 카이하츠오 스스메테키테이루
+今回の開発では、TX-101 の機能充実化に対応するとともに、新製品 NZ2C へも「Lithography Plus」を展開する。TX-101および NZ2C の市場拡大に伴い、安定した装置運用と迅速な保守対応が求められており、既存のサポートツールを統合することで、運用負荷の軽減と業務効率の向上を図る。
+콘카이노 카이하츠데와 티이엣쿠스햐쿠이치 노 키노오주우지츠카니 타이오오스루토 토모니 신세에힌 에누젯토니시이 에모 리소구라휘이 푸라스 오 텐카이스루 티이엣쿠스햐쿠이치오요비 에누젯토니시이 노 시조오 카쿠다이니 토모나이 안테에시타 소오치운요오토 진소쿠나 호슈타이오오가 모토메라레테오리 키손노 사포오토츠우루오 토오고오스루 코토데 운요오후카노 케에겐토 교오무코오리츠노 코오조오오 하카루
+
+ 目的（要件定義）
+TX-101 および NZ2C に「Lithography Plus」を対応させるため、2024 年に調査分析を実施した。その結果を踏まえ、TX-
+101 においてはイベント履歴、エラー発生履歴、パラメータ変更履歴への対応を完了し、必要な機能を洗い出した上で優先順位を設定し、開発を進めている。
+모쿠테키 요오켄테에기 티이엣쿠스햐쿠이치 오요비 에누젯토니시이 니 리소구라휘이 푸라스 오 타이오오사세루 타메 니센니주우요 넨니 초오사분세키오 짓시시타 소노 켓카오 후마에 티이엣쿠스 햐쿠이치 니 오이테와 이벤토리레키 에라아핫세에리레키 파라메에타 헨코오리레키에노 타이오오오 칸료오시 히츠요오나 키노오오 아라이다시타 우에데 유우센주이오 셋테에시 카이하츠오 스스메테이루
+今後は TX-101 の機能をさらに充実させるとともに、新製品 NZ2C への展開を進めていく。また、「Lithography Plus」は KrF／i 線装置をベースに開発しているが、既存装置にも共通して使用できるよう、汎用性のある仕組みとして対応する。
+콘고와 티이엣쿠스햐쿠이치 노 키노오오 사라니 주우지츠사세루토 토모니 신세에힌 에누젯토니시이 에노 텐카이오 스스메테이쿠 마타 리소구라휘이 푸라스 와 케에아아루에후아이 센소오치오 베에스니 카이하츠시테이루가 키손소오치니모 쿄오츠우시테 시요오데키루요오 한요오세에노 아루 시쿠미토 시테 타이오오스루
+vvvvvvvvv
+1.	NZ2C ログ収集対応	(EST-00043)
+2.	新規機能追加対応	(EST-00044)
+3.	Liplus 共通化対応	(EST-00045)
+이치 에누젯토니시이 로구 슈우슈우타이오오 이이에스티이욘주우산 니 신키 키노오츠이카타이오오 이이에스티이욘주우욘 산 릿푸라스 쿄오츠우카타이오오 이이에스티이욘주우고
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 要件詳細
 本件の対象範囲は以下の図で示す。
- 
-図 4 1　 TX-101のLiplus構成図
+요오켄 쇼오사이 혼켄노 타이쇼오한이와 이카노 즈데 시메스
 
- 
-4.1.	NZ2Cのログ収集
-4.1.1.	現在ESPRITで収集しているNZ2C装置のBRTLデータ全部をMDASに対応する。詳細なイベントモデルの仕様をESPRITバージョン3.4のソースコードを参考する。NZ2Cのステーション対応
-A1,A2,B1,B2対応
+図 4-1 Liplus 構成図 즈 욘이치 릿푸라스 코오세에즈
+
+4.1.	NZ2C のログ収集 【EST-00043】
+現在 ESPRIT で収集している NZ2C 装置の BRTL データ全件を MDAS に対応させる。詳細イベントモデルの仕様は、ESPRIT バージョン 3.4 のソースコードを参照すること。
+욘 이치 에누젯토니시이 노 로구슈우슈우 이이에스티이욘주우산 
+겐자이 에스푸리 데 슈우슈우시테이루 에누젯토니시이 소오치노 비이아아루티이에루 데에타젠켄오 에무디이에에에스 니 타이오오사세루 
+쇼오사이이벤토모데루노 시요오와 에스푸리 바아조 산 욘 노 소오스코오도오 산쇼오스루 코토
+
+4.1.1.	NZ2C のステーション対応
+NZ2C 機種のステーション A1,A2,B1,B2 を対応する。
+욘 이치 이치 에누젯토니시이 노 스테에쇼타이오오 
+에누젯토니시이 키슈노 스테에쇼 에에이치에에니비이이치비이니 오 타이오오스루
+
 4.1.2.	対象イベントモデル一覧
-ESPRITソースコード3.4で収集しているNZ2C装置のイベントモデル一覧を以下に記載する。
-以外Liplus機能に追加される必要なイベントがあれば協議後追加する。
-Ｎｏ	Lithography PlusのEvent ID	イベント履歴	エラー発生履歴	パラメータ変数履歴
-1	AlsHalogen	〇		
-2	AlsLaserDiode	〇		
+ESPRIT バージョン 3.4 のソースコードで収集している NZ2C のイベントモデルを以下に示す。 NZ2C すべてのイベントモデルに対して、MDAS で収集し、LiplusDB サーバーへ転送する対応を行う。
+また、イベントについてはイベント履歴、エラー発生履歴、パラメータ変更履歴の列に「〇」が付いている UI 画面に、該当データが表示されるように対応する。
+욘 이치 니 타이쇼오이벤토모데루 이치란 
+에스푸리 바아조 산 욘 노 소오스코오도데 슈우슈우시테이루 에누젯토니시이 노 이벤토모데루오 이카니 시메스 
+에누젯토니시이 스베테노 이벤토모데루니 타이시테 에무디이에에에스 데 슈우슈우시 에루아이피이에루유우에스디이비이 사아바아에 텐소오스루 타이오오오 오코나우 
+마타 이벤토니 츠이테와 이벤토리레키 에라아핫세에리레키 파라메에타헨코오리레키노 레츠니 가 츠이테이루 유우아이 가멘니 가이토오데에타가 효오지사레루요오니 타이오오스루
+
+
+※ 「〇」が付いていないイベントは LiplusDB に転送して Elasticsearch に保存する。
+なお、下記以外に、Liplus 機能に追加が必要なイベントがある場合は、協議の上で追加する。
+〇 가 츠이테이나이 이벤토와 에루아이피이에루유우에스디이비이 니 텐소오시테 이랏스티쿠사아치 니 호존스루 
+나오 카키이가이니 릿푸라스 키노오니 츠이카가 히츠요오나 이벤토가 아루 바아이와 쿄오기노 우에데 츠이카스루
+
+Ｎｏ
+1	Lithography Plus の Event ID
+AlsHalogen	イベント履歴	エラー発生履歴	パラメータ変更履歴
+2	AlsLaserDiode
+
+		이벤토리레키 에라아핫세에리레키 파라메에타 헨코오리레키
+
+
+
+
+
 3	AlsMetalHalide			
 4	AnomalyDetectionFunc			
 5	ArcherData			
@@ -104,303 +269,1105 @@ ESPRITソースコード3.4で収集しているNZ2C装置のイベントモデ�
 51	RfSeqEvent	〇		
 52	RTParamSetEvent	〇		〇
 53	SeparationSeq			
-54	SfcFunc			
-55	SfcImage			
-56	SfcLocation			
-57	SfcShotSeq			
-58	ShotAcqFile			
-59	ShotDataCollectEvent	〇		
-60	ShotSeq			
-61	ShotStatsFile			
-62	SpreadCamDFunc			
-63	StartConditionCheckSeq			
-64	StationStateEvent	〇		
-65	SysParamSet	〇		〇
-66	SysParamTTMOfs			
-67	TtmIPDieByDieInquiry			
-68	TtmMoveAndMeas			
-69	TtmMoveAndPreMeas			
-70	TtmPosOfs			
-71	TtmScope			
-72	TvpaFunc			
-73	TvpaShotSeq			
-74	UnitVersion			
-75	WacInlineIF			
-76	WacLoadPort			
-77	WacPA			
-78	WacRobot			
-79	WacRobotHand			
-80	WacSeqEvent	〇		
-81	WacStation			
-82	WacWTC			
-83	WaferLoadSeq			
-84	WaferManualInfo			
-85	WaferMoveTracer			
-86	WaferSeq			
-87	WaferTracer			
-88	WaferTransferEvent	〇		
-89	WaferUnloadSeq			
-90	WfSeqEvent	〇		
-91	WrecipeSetMarathonConfig			
-92	XFDParamSetEvent	〇		
+
+54	SfcFunc		
+55	SfcImage		
+56	SfcLocation		
+57	SfcShotSeq		
+58	ShotAcqFile		
+59	ShotDataCollectEvent	〇	
+60	ShotSeq		
+61	ShotStatsFile		
+62	SpreadCamDFunc		
+63	StartConditionCheckSeq		
+64	StationStateEvent	〇	
+65	SysParamSet	〇	〇
+66	SysParamTTMOfs		
+67	TtmIPDieByDieInquiry		
+68	TtmMoveAndMeas		
+69	TtmMoveAndPreMeas		
+70	TtmPosOfs		
+71	TtmScope		
+72	TvpaFunc		
+73	TvpaShotSeq		
+74	UnitVersion		
+75	WacInlineIF		
+76	WacLoadPort		
+77	WacPA		
+78	WacRobot		
+79	WacRobotHand		
+80	WacSeqEvent	〇	
+81	WacStation		
+82	WacWTC		
+83	WaferLoadSeq		
+84	WaferManualInfo		
+85	WaferMoveTracer		
+86	WaferSeq		
+87	WaferTracer		
+88	WaferTransferEvent	〇	
+89	WaferUnloadSeq		
+90	WfSeqEvent	〇	
+91	WrecipeSetMarathonConfig		
+92	XFDParamSetEvent	〇	
 
 
 
 
-4.2.	Liplus機能のTX-101・NZ2C対応
-4.2.1.	Fab information画面
-4.2.1.1.	「Tool」タブ
-本機能はLiplus開発Phase2でTX-101の対応を実施した。本委託ではＮＺ２Ｃ機種の追加による対応を行う。
-変更点がない場合、NZ2C機種でのテストだけでいい。
 
-4.2.1.2.	「Anomaly」タブ
-本機能は次回の委託で対応する予定。
 
-4.2.1.3.	「Tool Configuration」タブ
-「Tool Configuration」タブは装置のユニットのバージョンやシステムパラメータの値を表示する。
+4.1.3.	ジョブ毎のファイル管理対応
+ESPRIT は日付・ジョブ・ウェーハごとのパス構成に従ってログデータを保存している。本機能に対して、ESPRIT バージョン 3.4 のソースコードを分析し、Liplus でも ESPRIT と同じ方式のログ管理ができるようにする。
+욘 이치 산 조부고토노 화이루칸리 타이오오 
+에스푸리 와 히즈케 조부웨에하고토노 파스코오세에니 시타갓테 로구데에타오 호존시테이루 혼키노오니 타이시테 에스푸리 바아조 산 욘 노 소오스코오도오 분세키시 릿푸라스 데모 에스푸리 토 오나지 호오시키노 로구칸리가 데키루요오니 스루
+
+
+
+本委託においては、以下の 4 種類のファイルに関して対応を行うこと。
+혼이타쿠니 오이테와 이카노 욘 슈루이노 화이루니 칸시테 타이오오오 오코나우 코토
+ESPRIT のクラス名	取得ファイル名	説明
+에스푸리 노 쿠라스메에 슈토쿠화이루 메에 세츠메에
+
+BRTLLotJobCollector	*.rtl.gz	PJ（Process Job）の BRTL データ取得
+BRTLCmdJobCollector	*.rtl.gz	CJ（Command Job）のBRTL データ取得
+StationIndexWriter	station_index.txt	処理した Lot の情報
+WaferListWriter	waferList.txt	処理したウェーハの情報
+
+
+4.2.	Liplus 機能の TX-101・NZ2C 対応
+4.2.1.	データ確認（Data confirmation）
+4.2.1.1.	装置状態（Machine status）
+4.2.1.1.1.	Fab information 画面
+「Tool」タブ 【EST-00045】
+本機能は Liplus 開発 Phase2 委託で TX-101 の対応を実施した。
+本委託ではＮＺ２Ｃの機種対応を行う。
+変更点がない部分に関しても NZ2C は全機能テストを実施する。
+욘 니 릿푸라스 키노오노 티이엣쿠스햐쿠이치에누젯토니시이 타이오오 
+욘 니 이치 데에타카쿠닌 데에타 콘화메에쇼 
+욘 니 이치 이치 소오치조오타이 마신 스테에타스 
+욘 니 이치 이치 이치 화부 인훠메에쇼 가멘 
+츠우루 타부 이이에스티이욘주우고 
+혼키노오와 릿푸라스 카이하츠 훼에즈니 이타쿠데 티이엣쿠스햐쿠이치 노 타이오오오 짓시시타 
+혼이타쿠데와 에누젯토니시이노 키슈타이오오오 오코나우 
+헨코오텐가 나이 부분니 칸시테모 에누젯토니시이 와 젠키노오테스토오 짓시스루
+
+「Anomaly」タブ対象外
+아노마리이 타부
+타이쇼오가이
+
+「Tool Configuration」タブ 【EST-00044】
+「Tool Configuration」タブは装置のユニットのバージョンやシステムパラメータの値を表示する機能で TX-101  および
+NZ2C に本機能を対応させる。
+츠우루 콘휘규레에쇼 타부 이이에스티이욘주우욘 
+츠우루 콘휘규레에쇼 타부와 소오치노 유닛토노 바아조야 시스테무파라메에타노 아타이오 효오지스루 키노오데 티이엣쿠스햐쿠이치 오요비 에누젯토니시이 니 혼키노오오 타이오오사세루
+
+
+①
  
+図 4-2 Tool Configuration タブ
 
 	項目	説明
 ①	装置バージョン関連情報一覧	装置バージョン関連情報の一覧を表示します。
 ②	表示列選択ダイアログ表示ボタン	装置バージョン関連情報一覧に表示する列を選択するダイアログを表示します。
-
-
-項目	5550	6300	TX-101	NZ2C	
-Tool	〇	〇	〇	〇	
-Model	〇	〇	〇	〇	
-Main version	〇	〇	〇	〇	
-Version up date	〇	〇	〇	〇	
-Fab	〇	〇	〇	〇	
-Building	〇	〇	〇	〇	
-S/N	〇	〇	〇	〇	
-Chamber type	〇	〇			
-Machine type	〇	〇			
-Stage Type		〇			
-WF System		〇			
-Wafer Size		〇			
-Laser Type		〇			
-Slit Type		〇			
-OPTF Type		〇			
-OAS Type		〇			
-LI/UC Meas Mode		〇			
-Stage Profile		〇			
-OH Option		〇			
-RTOS		〇			
-IP		〇			
-CHB		〇			
-RSMP		〇			
-PRG		〇			
-IL1A		〇			
-IL1B		〇			
-IL2A		〇			
-IL3A		〇			
-IL4A		〇			
-MBPC1		〇			
-MBPC2		〇			
-MFRS		〇			
-RA		〇			
-RSU		〇			
-PO1		〇			
-PO2		〇			
-OAS		〇			
-CM		〇			
-EXPO		〇			
-PCS		〇			
-ALS		〇			
-MFWS		〇			
-WS		〇			
-SHRH		〇			
-PA		〇			
-SCH		〇			
-RCS		〇			
-PPC1		〇			
-PPC2		〇			
-CANET		〇			
-NALS		〇			
-NOAS		〇			
-					
+表 4-1 Tool Configuration タブ説明
+소오치바아조 칸렌조오호오 이치란  소오치바아조 칸렌조오호오노 이치란오 효오지시마스 
+효오지레츠 센타쿠다이아로구 효오지보탄 소오치바아조 칸렌조오호오이치란니 효오지스루 레츠오 센타쿠스루 다이아로구오 효오지시마스 
+효오 욘이치 츠우루 콘휘규레에쇼 타부세츠메에
 
 
 
+項目	5550	6300	TX-101	NZ2C
+Tool	〇	〇	〇	〇
+Model	〇	〇	〇	〇
+Main version	〇	〇	〇	〇
+Version up date	〇	〇	〇	〇
+
+
+Fab	〇	〇	〇	〇
+Building	〇	〇	〇	〇
+S/N	〇	〇	〇	〇
+Chamber type	〇	〇		
+Machine type	〇	〇		
+Stage Type		〇		
+WF System		〇		
+Wafer Size		〇		
+Laser Type		〇		
+Slit Type		〇		
+OPTF Type		〇		
+OAS Type		〇		
+LI/UC Meas Mode		〇		
+Stage Profile		〇		
+OH Option		〇		
+RTOS		〇		
+IP		〇		
+CHB		〇		
+RSMP		〇		
+PRG		〇		
+IL1A		〇		
+IL1B		〇		
+IL2A		〇		
+IL3A		〇		
+IL4A		〇		
+MBPC1		〇		
+MBPC2		〇		
+MFRS		〇		
+RA		〇		
+RSU		〇		
+PO1		〇		
+PO2		〇		
+OAS		〇		
+CM		〇		
+EXPO		〇		
+PCS		〇		
+ALS		〇		
+MFWS		〇		
+WS		〇		
+SHRH		〇		
+PA		〇		
+SCH		〇		
+RCS		〇		
+PPC1		〇		
+PPC2		〇		
+CANET		〇		
+NALS		〇		
+NOAS		〇		
+表 4-2 装置毎に対応対象カラム
+효오 욘니 소오치고토니 타이오오타이쇼오카라무
+
+
+4.2.1.1.2.	Tool information 【EST-00045】 Event
+本機能はLiplus 開発Phase2 委託でTX-101 の対応を実施した。
+本委託ではＮＺ２Ｃの機種対応を行う。
+変更点がない部分に関しても NZ2C は全機能テストを実施する。
+욘 니 이치 이치 니 츠우루 인훠메에쇼 이이에스티이욘주우고 
+이벤토 
+혼키노오와 릿푸라스 카이하츠훼에즈니 이타쿠데 티이엣쿠스햐쿠이치 노 타이오오오 짓시시타 
+혼이타쿠데와 에누젯토니시이노 키슈타이오오오 오코나우 
+헨코오텐가 나이 부분니 칸시테모 에누젯토니시이 와 젠키노오테스토오 짓시스루
+
+Anomaly対象外
+
+4.2.1.2.	データ分析（Data analysis select） 【EST-00045】
+4.2.1.2.1.	Data trend monitor
+本機能は Liplus 開発 Phase2 委託で TX-101 の対応を実施した。本委託ではＮＺ２Ｃの機種対応を行う。 NZ2C のアイテム一覧は以下に示す。
+욘 니 이치 니 데에타분세키 데에타 아나리시스 세레쿠토 이이에스티이욘주우고 
+욘 니 이치 니 이치 데에타 토렌도 모니타아 
+혼키노오와 릿푸라스 카이하츠 훼에즈니 이타쿠데 티이엣쿠스햐쿠이치 노 타이오오오 짓시시타 혼이타쿠데와 에누젯토니시이노 키슈타이오오오 오코나우 에누젯토니시이 노 아이테무이치란와 이카니 시메스
+
+
+Preset データ	アイテム名
+LotSetting
+Total Wafer Count
+ALS	ALS Lamp House Panel Status
+	ALS Lamp Lighting Status
+Chamber	Drive Status of Mask Vacuum Pump for Emergency
+	Pressure Value of the Differential Pressure Meter/Feeder
+
+Dispenser	Fluid Chiller Status
+	Fluid Circulation Status
+	Fluid Level
+	Fluid Supply Temperature
+
+
+ESCP	ESCP LB Current Value
+	ESCP LB Voltage Value
+	ESCP LF Current Value
+	ESCP LF Voltage Value
+	ESCP R Current Value
+	ESCP R Voltage Value
 
 
 
 
-4.2.2.	Command select画面
-Command select画面は、Lithography Plusに接続されている装置で実行した各種コマンドの実行結果を確認するための画面である。コマンド実行結果ファイルを簡単に取得して内容を表示する。
 
-4.2.2.1.	Command select
-Command select画面では、対象Fab、Building、Series、Modelおよび装置を指定し、任意のコマンドを選択します。
-検索結果のFile Listから任意のファイルを選択し、「Result」ボタンでファイルの内容をCommand result画面に表示します。
+IH	Cavity Pressure
+	Differential Pressure of Helium Emission
+	IH-Z Current Command Value Z1
+	IH-Z Current Command Value Z2
+	IH-Z Current Command Value Z3
+	IH-Z Current Sensor Value Z1
+	IH-Z Current Sensor Value Z2
+	IH-Z Current Sensor Value Z3
+	IH-Z Encoder Value Z1
+	IH-Z Encoder Value Z2
+	IH-Z Encoder Value Z3
+	Mask Chuck Vacuum Pressure
+IL	Pressure Status of Cooling Air for Exposure Shutter
+	UC Sensor Value
 
+
+
+Interlock	ACM Panel Status
+	ALS Interlock Status
+	ALS Panel Status
+	Booth Panel Status
+	CM Interlock Status
+	CM Panel Status
+	FOUP Panel Status
+
+	High Order Correction Laser Interlock Status
+	Interlock Defeat Key Status
+	MSC Unit Interlock Status
+	RMS Panel Status
+	UV Lamp House Panel Status
+	UV Lamp Interlock Status
+	WF Ionizer Interlock Status
+	WF Unit Interlock Status
+	WS Interlock Status
+	WS/MSC Ionizer Interlock Status
+	Wafer Feeder Maintenance A1 Panel Status
+	Wafer Feeder Maintenance A2 Panel Status
+	Wafer Feeder Maintenance B1 Panel Status
+	Wafer Feeder Maintenance B2 Panel Status
+
+
+Ionizer	MSC Ionizer Lifetime Status
+	MSC Ionizer Power Status
+	WF Ionizer Irradiation Status
+	WF Ionizer Lifetime Status
+	WS Ionizer Liftime Status
+	WS Ionizer Power Status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LD-ALS	ALS ACDC Power Status
+	ALS L-TEC Power Status
+	ALS LB-LD Power Status
+	ALS LF-LD Power Status
+	ALS R-TEC Power Status
+	ALS RB-LD Power Status
+	ALS RF-LD Power Status
+	Diffuser Panel LB Current Value
+	Diffuser Panel LB Rotation Number
+	Diffuser Panel LB Status
+	Diffuser Panel LF Current Value
+	Diffuser Panel LF Rotation Number
+	Diffuser Panel LF Status
+	Diffuser Panel RB Current Value
+	Diffuser Panel RB Rotation Number
+	Diffuser Panel RB Status
+	Diffuser Panel RF Current Value
+	Diffuser Panel RF Rotation Number
+	Diffuser Panel RF Status
+	LB-LD1 Output Value
+	LB-LD1 Temp. Value
+	LB-LD2 Output Value
+	LB-LD2 Temp. Value
+	LB-LD3 Output Value
+	LB-LD3 Temp. Value
+	LF-LD1 Output Value
+	LF-LD1 Temp. Value
+	LF-LD2 Output Value
+	LF-LD2 Temp. Value
+	LF-LD3 Output Value
+	LF-LD3 Temp. Value
+
+	OAS LED Output Value
+	RB-LD1 Output Value
+	RB-LD1 Temp. Value
+	RB-LD2 Output Value
+	RB-LD2 Temp. Value
+	RB-LD3 Output Value
+	RB-LD3 Temp. Value
+	RF-LD1 Output Value
+	RF-LD1 Temp. Value
+	RF-LD2 Output Value
+	RF-LD2 Temp. Value
+	RF-LD3 Output Value
+	RF-LD3 Temp. Value
+	TTM LB-LD1 Driver Current Value
+	TTM LB-LD1 Signal Status
+	TTM LB-LD2 Driver Current Value
+	TTM LB-LD2 Signal Status
+	TTM LB-LD3 Driver Current Value
+	TTM LB-LD3 Signal Status
+	TTM LF-LD1 Driver Current Value
+	TTM LF-LD1 Signal Status
+	TTM LF-LD2 Driver Current Value
+	TTM LF-LD2 Signal Status
+	TTM LF-LD3 Driver Current Value
+	TTM LF-LD3 Signal Status
+	TTM RB-LD1 Driver Current Value
+	TTM RB-LD1 Signal Status
+	TTM RB-LD2 Driver Current Value
+	TTM RB-LD2 Signal Status
+	TTM RB-LD3 Driver Current Value
+	TTM RB-LD3 Signal Status
+	TTM RF-LD1 Driver Current Value
+	TTM RF-LD1 Signal Status
+	TTM RF-LD2 Driver Current Value
+	TTM RF-LD2 Signal Status
+	TTM RF-LD3 Driver Current Value
+	TTM RF-LD3 Signal Status
+
+
+
+
+
+
+UV-Lamp	Lighting Device Status
+	Pressure Status of Cooling Air for UV Lamp (Anode)
+	Pressure Status of Cooling Air for UV Lamp (Cathode)
+	Time of UV Lamp Settling
+	UV Lamp Box Lock Status
+	UV Lamp Current Value
+	UV Lamp House Temp. 1 Status
+	UV Lamp House Temp. 2 Status
+	UV Lamp Impedance Value
+	UV Lamp Lighting Status
+	UV Lamp Power Status
+	UV Lamp Power Value
+	UV Lamp Voltage Value
+WF	Shutter A1 Status
+
+
+	Shutter A2 Status
+	Shutter B1 Status
+	Shutter B2 Status
+
+
+WS	SMT Pressure Zone1
+	SMT Pressure Zone2
+	SMT Pressure Zone3
+	SMT Pressure Zone4
+	SMT Pressure Zone5
+表 4-3 NZ2C 装置の対象アイテム一覧
+
+4.2.1.2.2.	Utilization monitor
+本機能は Liplus 開発 Phase2 委託で TX-101 の対応を実施した。
+本委託ではＮＺ２Ｃの機種対応を行う。
+
+4.2.1.3.	Wafer map対象外
+
+욘 니 이치 니 니 유우티리제에신 모니타아 
+혼키노오와 릿푸라스 카이하츠 훼에즈니 이타쿠데 티이엣쿠스햐쿠이치 노 타이오오오 짓시시타 
+혼이타쿠데와 에누젯토니시이노 키슈타이오오오 오코나우 
+욘 니 이치 산 우에하아 
+맛푸타이쇼오가이
+
+
+4.2.1.4.	QC
+4.2.1.4.1.	CF 【EST-00044】
+NZ2C に対してCF 機能を対応する。
+CF 計測結果の表示画面は、まず始めに対象Fab、Building、Series、Model に属する装置別にマップ形式のサムネイル表示一覧を表示する。
+에누젯토니시이 니 타이시테 시이에후 키노오오 타이오오스루 
+시이에후 케에소쿠켓카노 효오지가멘와 마즈 하지메니 타이쇼오화부 비루디구 시리이즈 모데루 니 조쿠스루 소오치베츠니 맛푸케에시키노 사무네에루효오지이치란오 효오지스루
+
+
+
+
+サムネイル表示一覧画面では、対象 Fab、Building、Series、Model を切り替えることができる。
+サムネイル表示一覧から詳細を見たいマップをクリックすると、当該装置の Local/Global flatness トレンドグラフ表示画面を表示する。
+사무네에루효오지이치란가멘데와 타이쇼오 화부 비루디구 시리이즈 모데루 오 키리카에루 코토가 데키루 
+사무네에루효오지이치란카라 쇼오사이오 미타이 맛푸오 쿠릿쿠스루토 토오가이소오치노 로오카루구로오바루 후라토넷스 토렌도구라후 효오지가멘오 효오지스루
+
+
+
+Local/Global flatness トレンドグラフ表示画面でLocal flatness または Global flatness のマップをクリックすると、CF 計測結果表示画面を表示する。
+CF 計測結果表示画面の Local flatness と Global flatness は同じ画面構成であるため、Local flatness を例に説明する。
+로오카루구로오바루 후라토넷스 토렌도구라후 효오지가멘데 로오카루 후라토넷스 마타와 구로오바루 후라토넷스 노 맛푸오 쿠릿쿠스루토 시이에후 케에소쿠켓카 효오지가멘오 효오지스루 시이에후 케에소쿠켓카 효오지가멘노 로오카루 후라토넷스 토 구로오바루 후라토넷스 와 오나지 가멘코오세에데 아루 타메 로오카루 후라토넷스 오 레에니 세츠메에스루
+
+
+
+図 4-3 サムネイル一覧表示
+
+
+
+図 4-4 トレンドグラフ表示
+
+
+①
+項目코오모쿠
+Local/Global flatness トレンド表示エリア
+로오카루구로오바루 후라토넷스 토렌도효오지에리아	説明
+Local/Global flatness の画像と、該当のデータを最新 30 件分表示する。
+로오카루구로오바루 후라토넷스 노 가조오토 가이토오노 데에타오 사이신 산주쯔 켄분 효오지스루
+
+
+
+②	
+
+
+グラフ表示エリア
+구라후 효오지에리아	Center, Edge-Up, Edge-Left, Edge-Right の値をグラフで表示する。
+・ Center:	チャック中心範囲(X:-10 ～ 10mm、Y:-10 ～ 30mm) の Local Flatness 計測データワースト値
+・ Edge–Up:	チャック上部範囲(X:-10 ～10mm、Y:110 ～150mm)の Local Flatness 計測データワースト値
+・ Edge–Left:	チャック左部範囲(X:-130～90mm、Y:-80～
+-40mm)の Local Flatness 計測データワースト値
+・ Edge–Right:	チャック右部範囲(X:90～130mm、Y:-80～
+-40mm)の Local Flatness 計測データワースト値
+
+센타아 엣지유우피이 엣지레후토 엣지라이토 노 아타이오 구라후데 효오지스루 
+센타아 차쯔쿠 추우신한이 엣쿠스주우 주우미리메에토루 와이주우 산주우미리메에토루 노 로오카루 후라토넷스 케에소쿠데에타와아스토치 
+엣지유우피이 차쯔쿠 조오부한이 엣쿠스주쯔 카라주우미리메에토루 와이햐쿠주쯔 카라햐쿠고주우미리메에토루노 로오카루 후라토넷스 케에소쿠데에타와아스토치 엣지레후토 차쯔쿠 사토리 한이 엣쿠스햐쿠산주쯔카라큐우주우미리메에토루 와이하치주우 욘주우미리메에토루노 로오카루 후라토넷스 케에소쿠데에타와아스토치 엣지라이토 차쯔쿠 미기부한이 엣쿠스큐우주쯔카라햐쿠산주우미리메에토루 와이하치주우 욘주우미리메에토루노 로오카루 후라토넷스 케에소쿠데에타 와아스토치
+表 4-4 トレンドグラフの説明  효오 욘욘 토렌도구라후노 세츠메에
+
+
+図 4-5 CF 計測結果表示 – Graphics  즈 욘고 시이에후 케에소쿠켓카 효오지 구라휘쯔쿠스
+
+
+①
+項目
+Graphics/Worst data 画面切り替えボタン
+구라휘쯔쿠스와아스토 데에타 가멘 키리카에 보탄	説明
+Graphics 画面、Worst data 画面を選択できる。
+구라휘쯔쿠스 가멘 와아스토 데에타 가멘오 센타쿠데키루
+②	Local/Global flatness 表示エリア	Local/Global flatness 画像を表示する。
+マップ下部のスライダーバーでマップの回転角（0～360゜）を操作できる。
+マップ右側のスライダーバーでマップの視点（0～90゜）を操作できる。
+로오카루구로오바루 후라토넷스 가조오오 효오지스루 
+맛푸카부노 스라이다아바아데 맛푸노 카이텐카쿠 레에카라산뱌쿠로쿠주우오 소오사데키루 
+맛푸미기가와노 스라이다아바아데 맛푸노 시텐 레에카라큐우주우오 소오사데키루
+③	カラースケール変更エリア
+카라아스케에루 헨코오에리아	表示色のスケールを操作することができる。
+효오지쇼쿠노 스케에루오 소오사스루 코토가 데키루
+④	Data summary데에타 사마리이	Local/Global flatness のデータを表示する。
+로오카루구로오바루 후라토넷스 노 데에타오 효오지스루
+⑤	Chuck surface data
+추쯔쿠 사아화스 데에타	チャック表面のデータを表示する。
+차쯔쿠효오멘노 데에타오 효오지스루
+⑥	Calculation frequency
+카루큐우레에신 후리이쿠엔시이	最小二乗近似平面から算出された累積度数分布グラフを表示する。
+사이쇼오 니조오 킨지헤에멘카라 산슈츠사레타 루이세키도스우 분푸구라후오 효오지스루
+⑦	Prev. /Next ボタン
+푸라부 네쿠스토 보탄 	表示している計測結果の前後の計測結果を表示する。
+효오지시테이루 케에소쿠켓카노 젠고노 케에소쿠켓카오 효오지스루
+
+
+図 4-6 CF 計測結果表示 - Worst data  즈 욘로쿠 시이에후 케에소쿠켓카 효오지 와아스토 데에타
+
+
+
+
+
+①
+項目
+Worst data 一覧	説明
+Local/Global flatness の Worst data を「Setting」タブで設定したワーストデータ数分だけ表示する。
+로오카루구로오바루 후라토넷스노 와아스토 데에타오 셋티구타부데 셋테에시타 워쯔스토 데에타스우다케 효오지스루
+
+
+
+
+
+
+
+
+②	
+
+
+
+
+
+
+
+Survey 사아베이	Worst data のウェーハ上の位置を以下の値で-0.15～0.5 の範囲で色分けして表示する。
+・計測モードが「Z」の場合：	Z の値
+・計測モードが「TiltX」の場合：	Delta-TiltX の値
+・計測モードが「TiltY」の場合：	Delta-TiltY の値
+
+와아스토 데에타 노 웨에하조오노 이치오 이카노 아타이데 레에 주우고카라레에 고 노 한이데 이로와케시테 효오지스루 케에소쿠모오도가 젯토 노 바아이 젯토 노 아타이 케에소쿠모오도가 티이이루토 엣쿠스 노 바아이 데루타티이이루토 엣쿠스 노 아타이 케에소쿠모오도가 티이이루토 와이 노 바아이 데루타티이이루토 와이 노 아타이
  
-Fig. 3.5.6.1.1 Command select
 
-	項目	説明
-①	Command select	表示したい絞り込みメニューを選択します。
-②	絞り込みメニュー	Command selectの選択により絞り込みメニューを表示します。
-・Function menu：	機能毎表示
-・Initial menu：	アルファベット表示
-③	Command list	絞り込みメニューで選択された項目のコマンド一覧を表示します。
-④	File list	コマンド結果ファイル一覧を表示します。
-⑤	Clear sortボタン	File listのヘッダをクリックしたときのソート状態を解除します。
-⑥	Resultボタン	Command result画面を表示します。
 
-4.2.2.1.	Command result
-Command result画面は、コマンド実行結果ファイルの内容を表示します。
 
-  
-Fig. 3.5.6.2.1 Command result
 
-	項目	説明
-①	Prev./Nextボタン	表示しているコマンド結果の前後のコマンド結果を表示します。
 
-4.2.3.	Parameter画面
-Parameter画面は、Lithography Plusに接続されている露光装置の各種パラメータの現在値を確認するための画面です。
-複数台の装置またはロットから簡単に情報を取得して内容を表示します。
 
-Parameter画面では、まず始めにParameter画面タブから表示対象の選択を行います。
-Fig. 3.5.7.1. (Parameter初期画面)
 
-	項目	説明
-①	Parameter画面タブ	Parameter画面に表示する情報を切り替えるタブ
-System parameter: 装置毎のシステムパラメータを確認します。
-Job parameter: ロット毎のジョブパラメータを確認します。
+図 4-7 CF 計測結果表示 – Setting  즈 욘나나 시이에후 케에소쿠켓카 효오지 셋티구
 
- 
-4.2.3.1.	3.5.7.1 System parameterタブ
-System parameterタブ画面では、まず始めに対象Fabから選択します。
-Fabを選択すると、存在する建屋と機種、該当装置が自動的に設定されます。
-取得したいパラメータのキーワードをParameter keywordに入力して「Search」ボタンを押下することで、選択した全ての装置から、キーワードが部分一致した全てのパラメータの現在値が取得され、装置別に表示されます。
-取得したいパラメータの種別（Parameter kind）や機能分類（Parameter function）を指定して、検索対象を絞り込むことができます。
-表示されたパラメータの値を選択すると、下部にパラメータの詳細情報が表示されます。
-表示されたパラメータの変更履歴が知りたい場合は「Change history」ボタンを押下することで、該当パラメータの装置リセット時の値と変更時の値が表示されます。
 
+①
+項目
+CF 計測結果情報エリア
+시이에후 케에소쿠켓카 조오호오에리아	説明
+CF 計測結果を表示する。
+시이에후 케에소쿠켓카오 효오지스루
+②	Worst data count
+와아스토 데에타 카운토	Worst data 一覧に表示するデータ数を設定することができる。
+・入力範囲：1 ～ 500
+와아스토 데에타 이치란니 효오지스루 데에타스우오 셋테에스루 코토가 데키루 뉴우료쿠한이이치 고햐쿠
+③	Miss data threshold
+데에타 스렛쇼오루도	Flatness データ算出データから除外する Focus 値を設定することができる。
+・入力範囲：0.001 ～ 10.000
+후라토넷스 데에타 산슈츠데에타카라 조가이스루 훠어카스 치오 셋테에스루 코토가 데키루 뉴우료쿠한이레에텐레에레에이치 주우텐레에레에레에
+④	Tilt compensation
+티루토 콘펜세에신 	グローバル補正を行うかどうかを設定することができる。
+・No compensate：	グローバル補正を行わない
+・Compensate： グローバル補正を行う
+구로오바루호세에오 오코나우카 도오카오 셋테에스루 코토가 데키루 
+에누오오 콘펜세에토 구로오바루호세에오 오코나와나이 
+콘펜세에토 구로오바루호세에오 오코나우
+
+⑤	
+Measurement mode
+메자멘토 모오도 	Graphic データ、Worst データを求める際の対象データを設定することができる。
+・Z：Focus 計測値 - 最小二乗平面で近似したFocus 値
+・TiltX： 最小二乗平面上当該座標の X 方向傾き
+・TiltY： 最小二乗平面上当該座標の Y 方向傾き
+구라휘쯔쿠 데에타 와아스토 데에타오 모토메루 사이노 타이쇼오데에타오 셋테에스루 코토가 데키루 
+젯토훠어카스 케에소쿠치 사이쇼오 니조오헤에멘데 킨지시타 훠어카스 치 티이이루토 엣쿠스 사이쇼오 니조오헤에멘조오 토오가이자효오노 엣쿠스 호오코오카타무키 
+티이이루토 와이 사이쇼오 니조오헤에멘조오 토오가이자효오노 와이 호오코오카타무키
+⑥	TiltY lock
+티이이루토 와이 롯쿠	Y 座標の係数を 0 固定（中央値）として扱うかどうかを設定することができる。
+・Unlock： Y 座標の係数を 0 固定としない
+・Lock： Tilt Compensate='Compensate'の場合、Y 座標の係数を 0 固定（中央値）とする
+와이 자효오노 케에스우오 레에 코테에 추우오오치토 시테 아츠카우카 도오카오 셋테에스루 코토가 데키루 운롯쿠 와이 자효오노 케에스우오 레에 코테에토 시나이 롯쿠 티루토 콘펜세에토콘펜세에토노 바아이 와이 자효오노 케에스우오 레에 코테에 추우오오치 토 스루
+
+⑦	
+Calculation method
+카루큐우레에신 메솟도	Local Flatness における Z 値算出方式を設定する。
+・Local Flatness： 最大のもの - 最小のものを Z 値とする。
+・Local + Flatness： 最大のものを Z 値とする。
+・Local - Flatness：	最小のものを Z 値とする。
+로오카루 후라토넷스 니 오케루 젯토 치 산슈츠호오시키오 셋테에스루 
+로오카루 후라토넷스 사이다이노 모노 사이쇼오노 모노오 젯토 치토 스루 
+로오카루 푸라스 후라토넷스 사이다이노 모노오 젯토 치토 스루 
+로오카루 후라토넷스 사이쇼오노 모노오 젯토 치토 스루
+⑧	Focus invalid
+훠어카스 인바릿도	Flatness 計算に含めないウェーハ外周からの領域を設定する。
+・入力範囲： 0.000 ～ 30.000
+후라토넷스 케에산니 후쿠메나이 웨에하가이슈우카라노 료오이키오 셋테에스루 뉴우료쿠한이 레에 레에 산주우 레에
+
+⑨	SFQR threshold
+에스에후큐우아아루 스렛쇼오루도	SFQR を算出する際の閾値を設定することができる。
+・入力範囲： 0.1 ～ 100.0
+에스에후큐우아아루 오 산슈츠스루 사이노 시키이치오 셋테에스루 코토가 데키루 뉴우료쿠한이 레에 이치 햐쿠 레에
+⑩	Local site width
+로오카루 사이토 위도스	Survey の矩形サイズの幅。
+・入力範囲： 1.000 ～ 26.000
+사아베이 노 쿠케에사이즈노 하바 뉴우료쿠한이 이치 레에 니주우로쿠 레에
+⑪	Local site height
+로오카루 사이토 하잇토	Survey の矩形サイズの高さ。
+・入力範囲： 1.000 ～ 33.000
+사아베이 노 쿠케에사이즈노 타카사 뉴우료쿠한이 이치 레에 산주우산 레에
+⑫	Default ボタン
+데훠루토 보탄	「Setting」タブの設定項目全てをデフォルトの値に戻す。
+셋티구 타부노 셋테에코오모쿠스베테오 데훠루토노 아타이니 모도스
+
+4.2.1.4.2.	FLARE  후레아
+対象外 타이쇼오가이
+4.2.1.4.3.	IUC
+対象外
+4.2.1.4.4.	LIMC
+対象外
+4.2.1.4.5.	DPOS & Missing check
+本機能は Liplus 開発 Phase2 委託で TX-101 の対応を実施した。本機能はＮＺ２Ｃの場合対象外。
+4.2.1.4.6.	Dispenser accumulation check
+本機能は Liplus 開発 Phase2 委託で TX-101 の対応を実施した。本機能はＮＺ２Ｃの場合対象外。
+4.2.1.4.7.	Hydra status
+本機能は Liplus 開発 Phase2 委託で TX-101 の対応を実施した。本機能はＮＺ２Ｃの場合対象外。
+
+4.2.1.4.8.	TM データ可視化機能開発 【EST-00044】  
+욘 니 이치 욘 하치 티이에무 데에타 카시카키노오카이하츠 이이에스티이욘주우욘
+TM（Thermal Module）データをプロットして可視化する機能を対応する。
+可視化対象 TM データは L0 メッセージの MID「180151」で、「Type」ごとのパラメータ「Name」になる。 LOG の例は、以下を参考にすること。
+티이에무 사아마루 모주우루 데에타오 푸롯토시테 카시카스루 키노오오 타이오오스루 카시카타이쇼오 티이에무 데에타와 에루레에 멧세에지노 밋도 주우하치만햐쿠고주우이치데 타이푸 고토노 파라메에타 에누에에무 니 나루 로구 노 레에와 이카오 산코오니 스루 코토
  
-Fig. 3.5.7.1.1 System parameterタブ
+表 4-5 TM 可視化ログデータの例  효오 욘고 티이에무 카시카로구데에타노 레에
 
-No.	Item	Description
-①	検索条件設定エリア	検索したいパラメータの検索条件を設定します。
 
-②	Fab表示欄	Fab名を表示します。
-③	Model表示欄	Model名を表示します。
-④	Tool表示欄	Tool名を表示します。
- 
-⑤	Version表示欄	装置の本体ソフトバージョンを表示します。
-⑥	Grade表示欄	装置のTP Optionの値を表示します。
-⑦	パラメータ一覧	パラメータのPathと値を表示します。
-⑧	Change historyボタン	パラメータ一覧にて選択されたパラメータの履歴を現在から過去1年分(1000件を超える場合は1000件まで)表示します。履歴にはリセットされたときの値も表示します。
-⑨	Detail information	パラメータ一覧にて選択されたパラメータの詳細情報を表示します。
-⑩	装置間差異表示ボタン	All parametersが選択されている場合は全パラメータを表示し、Only differencesが選択されている場合は装置間差があるパラメータのみを表示する。
-⑪	CSV downloadボタン	パラメータ一覧をCSV形式のファイルでダウンロードします。
-All parametersの場合は全パラメータ一覧をダウンロードし、Only differencesの場合は装置間差があるパラメータのみダウンロードします。
 
+ジョブ毎のグラフ対応
+１つのステーションで実行した各ジョブの TM データを比較できるように可視化する。
+各ジョブの経過時間に基づいてグラフを表示する。
+조부고토노 구라후타이오오 히토츠노 스테에쇼데 짓코오시타 카쿠 조부노 티이에무 데에타오 히카쿠데키루요오니 카시카스루 
+카쿠 조부노 케에카지칸니 모토즈이테 구라후오 효오지스루
+X 軸は各ジョブの開始時点を「00:00」として始まる。各ジョブの開始時間は異なるが、開始時間を「00:00」に統一し、 経過時間に応じてグラフ化する。
+엣쿠스 지쿠와 카쿠 조부노 카이시지텐오 토 시테 하지마루 카쿠 조부노 카이시지칸와 코토나루가 카이시지칸오 니 토오이츠시 케에카지칸니 오오지테 구라후카스루
+
+本機能のユースケースを以下に記載する。 혼키노오노 유우스케에스오 이카니 키사이스루
+
+１． ユーザーが可視化するステーションを選択する。（複数選択不可）
+２． ユーザーが選択したステーションで実行したジョブの一覧を表示する。 ３． ユーザーが可視化するジョブを選択する。（複数選択可能）
+４． ユーザーが可視化するパラメータを選択する。（複数選択可能）
+※ 選択したパラメータの数のみグラフを表示する。
+５． 各パラメータのデータを経過時間によってグラフを表示する。
+이치 유우자아가 카시카스루 스테에쇼오 센타쿠스루 후쿠스우센타쿠후카 
+니 유우자아가 센타쿠시타 스테에쇼데 짓코오시타 조부노 이치란오 효오지스루 
+산 유우자아가 카시카스루 조부오 센타쿠스루 후쿠스우 센타쿠 카노오 
+욘 유우자아가 카시카스루 파라메에타오 센타쿠스루 후쿠스우 센타쿠 카노오 센타쿠시타 파라메에타노 카즈노미 구라후오 효오지스루 
+고 카쿠 파라메에타노 데에타오 케에카지칸니 욧테 구라후오 효오지스루
+
+実機で取得した同じ TM データで時間基準グラフとジョブ基準グラフの比較可能な例を以下に示す。
+짓키데 슈토쿠시타 오나지 티이에무 데에타데 지칸키주구라후토 조부키주구라후노 히카쿠 카노오나 레에오 이카니 시메스
+
+
+172.8		VCS-TS1 Value VCS1	
+172.6				
+172.4				
+172.2				
+172				
+171.8				
+171.6				
+171.4				
+171.2				
+171
+14:24:00.000	
+14:38:24.000	
+14:52:48.000	15:07:12.000	15:21:36.000	
+15:36:00.000	
+15:50:24.000
+図 4-8 時間ベースグラフ  즈 욘카라하치 지칸 베에스구라후
+
+図 4-9 ジョブベースグラフ
+ステーション毎のグラフ対応
+複数のステーションで実行したジョブの TM データを比較できるようにする。ユーザーが選択したすべてのジョブのデータを可視化する。
+X 軸はユーザーが選択したジョブの中でジョブの一番早く開始時間から一番遅く終了時間までに設定して可視化する。本機能のユースケースを以下に記載する。
+１． ユーザーが可視化するステーションを選択する。（複数選択可能）
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
  
-Fig. 3.5.7.1.2 Change history
- 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	20/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
 
-No.	Item	Description
-①	パラメータ詳細情報	パラメータの詳細情報を表示します。
+２． ユーザーが選択したステーションで実行したジョブの一覧を表示する。 ３． ユーザーが可視化するジョブを選択する。（複数選択可能）
+４． ユーザーが可視化するパラメータを選択する。（複数選択可能）
+※ 選択したパラメータの数のみグラフを表示する。
+５． ユーザーが選択したジョブのすべてのパラメータデータをグラフに表示する。実機から取得した TM データでステーションごとの比較可能な例を以下に示す。
+
+
+173.5		VCS-TS1	
+173				
+172.5				
+172				
+171.5				
+171				
+170.5
+14:24:00.000	
+14:38:24.000	
+14:52:48.000	15:07:12.000	
+15:21:36.000	
+15:36:00.000
+図 4-10 ステーション毎にプロットグラフ
+
+4.2.1.5.	コマンド（Command select） 【EST-00044】
+Command select 画面は、Lithography Plus に接続されている露光装置で実行した各種コマンドの実行結果を確認するための画面である。コマンド実行結果ファイルを簡単に取得して内容を表示する機能で、TX-101 および NZ2C に本機能を対応させる。
+
+4.2.1.5.1.	Command select
+Command select 画面では、対象 Fab、Building、Series、Model および装置を指定し、任意のコマンドを選択する。
+検索結果の File List から任意のファイルを選択し、「Result」ボタンでファイルの内容を Command result 画面に表示する。
+
+
+
+
+
+
+
+
+
+
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	21/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+図 4-11 Command select 画面
+
+
+①
+項目
+Command select	説明表示したい絞り込みメニューを選択する。
+②	絞り込みメニュー	Command select の選択により絞り込みメニューを表示する。
+・Function menu： 機能毎表示
+・Initial menu： アルファベット表示
+③	Command list	絞り込みメニューで選択された項目のコマンド一覧を表示する。
+④	File list	コマンド結果ファイル一覧を表示する。
+⑤	Clear sort ボタン	File list のヘッダをクリックしたときのソート状態を解除する。
+⑥	Result ボタン	Command result 画面を表示する。
+
+4.2.1.5.2.	Command result
+Command result 画面は、コマンド実行結果ファイルの内容を表示する。
+図 4-12 Command result
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	22/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+
+
+①
+項目
+Prev./Next ボタン	説明
+表示しているコマンド結果の前後のコマンド結果を表示します。
+
+4.2.1.6.	パラメータ（Parameter） 【EST-00044】
+Parameter 画面は、Lithography Plus に接続されている露光装置の各種パラメータの現在値を確認するための画面で TX-101、NZ2C を対応する。また、複数台の装置またはロットから簡単に情報を取得して内容を表示する。
+
+Parameter 画面では、まず始めにParameter 画面タブから表示対象の選択を行う。
+
+図 4-13 Parameter 初期画面
+
+
+①
+項目 Parameter 画面タブ	説明
+Parameter 画面に表示する情報を切り替えるタブ
+System parameter: 装置毎のシステムパラメータを確認する。
+Job parameter: ロット毎のジョブパラメータを確認する。
+
+4.2.1.6.1.	System parameter タブ
+System parameter タブ画面では、まず始めに対象 Fab から選択する。
+取得したいパラメータのキーワードを Parameter keyword に入力して「Search」ボタンを押下することで、選択した全ての装置から、キーワードが部分一致した全てのパラメータの現在値が取得され、装置別に表示される。
+取得したいパラメータの種別（Parameter kind）や機能分類（Parameter function）を指定して、検索対象を絞り込むことができる。
+表示されたパラメータの値を選択すると、下部にパラメータの詳細情報が表示される。
+表示されたパラメータの変更履歴が知りたい場合は「Change history」ボタンを押下することで、該当パラメータの装置リセット時の値と変更時の値が表示される。
+
+
+
+
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	23/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+
+図 4-14 System parameter タブ
+
+No.
+①	Item
+検索条件設定エリア	Description 検索したいパラメータの検索条件を設定する。
+②	Fab 表示欄	Fab 名を表示する。
+③	Model 表示欄	Model 名を表示する。
+④	Tool 表示欄	Tool 名を表示する。
+⑤	Version 表示欄	装置の本体ソフトバージョンを表示する。
+⑥	Grade 表示欄	装置の TP Option の値を表示する。
+⑦	パラメータ一覧	パラメータの Path と値を表示する。
+⑧	Change history ボタン	パラメータ一覧にて選択されたパラメータの履歴を現在から過去 1 年分(1000 件を超える場合は
+1000 件まで)表示します。履歴にはリセットされたときの値も表示する。
+⑨	Detail information	パラメータ一覧にて選択されたパラメータの詳細情報を表示する。
+⑩	装置間差異表示ボタン	All parameters が選択されている場合は全パラメータを表示し、Only differences が選択されてい
+る場合は装置間差があるパラメータのみを表示する。
+⑪	CSV download ボタン	パラメータ一覧をCSV 形式のファイルでダウンロードする。
+All parameters の場合は全パラメータ一覧をダウンロードし、Only differences の場合は装置間差
+があるパラメータのみダウンロードする。
+
+
+
+
+
+
+
+
+
+
+
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	24/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+
+図 4-15 Change history
+
+No.
+
+
+
+
+
+
+
+
+
+
+①	Item
+
+
+
+
+
+
+
+
+
+
+パラメータ詳細情報	Description パラメータの詳細情報を表示する。
 ・Fab: 顧客名
 ・Building: 建屋名
 ・Series: シリーズID
-・Model: 機種ID
+・Model: 機種 ID
 ・Tool: 装置名
 ・Path: パラメータパス
 ・Parameter type: パラメータ種別
-- System: システムパラメータの変更
-- Recipe: レシピパラメータの変更
-- Job: ジョブパラメータの変更
-- Reticle: レチクルパラメータの変更
-- Illumination: イルミネーションパラメータの変更
-・Recipe or Reticle: RecipeまたはReticle
+-	System: システムパラメータの変更
+-	Recipe: レシピパラメータの変更
+-	Job: ジョブパラメータの変更
+-	Reticle: レチクルパラメータの変更
+-	Illumination: イルミネーションパラメータの変更
+・Recipe or Reticle: Recipe または Reticle
 ・Description: パラメータの説明
 ・Unit: パラメータの単位
-・Value: パラメータ値のデフォルト値、上限値、下限値
-表示形式は、[Default] val [Upper] val [Lower] val
-※ valにはそれぞれの値を表示します
+・Value: パラメータ値のデフォルト値、上限値、下限値表示形式は、[Default] val [Upper] val [Lower] val
+※ val にはそれぞれの値を表示する
 ・Option values: パラメータの選択肢
-・PID: パラメータID
-②	パラメータ変更一覧	パラメータ変更の変更日や値を一覧表示します。
+・PID: パラメータ ID
+
+
+
+
+②	
+
+
+
+パラメータ変更一覧	パラメータ変更の変更日や値を一覧表示する。
 ・Date: パラメータを変更またはリセットした日時
 ・Value: パラメータの値
 ・Operation: オペレーション
 ・Trigger: 変更トリガー
-- Console： e-Consoleのパラメータエディタからの変更
-- Host： Onlineからのパラメータ変更
-- Job： ジョブ実行からの変更
-- Command： コマンド実行からの変更
-- Lithography Plus： Lithography Plusからの変更
+-	Console： e-Console のパラメータエディタからの変更
+-	Host： Online からのパラメータ変更
+-	Job： ジョブ実行からの変更
+-	Command： コマンド実行からの変更
+-	Lithography Plus： Lithography Plus からの変更
 ③	閉じるボタン	ポップアップ画面を閉じます。
-④	Event historyボタン	Event history画面を表示します。
- 
-4.2.3.2.	3.5.7.2 Job parameterタブ
-Job parameterタブ画面では、まず始めに対象Fabから選択します。
-Fabを選択すると、存在する建屋と機種、該当装置が自動的に設定されます。
-取得したいJobの検索期間、レシピ名、ロット名を入力して「Search」ボタンを押下することで、選択した全ての装置から、条件に一致した全ての情報が取得され、Job一覧テーブルに表示されます。
-Job一覧テーブルからパラメータを確認したいJobを選択し、Addボタンを押下すると、対象のジョブパラメータが取得され、Job別に表示されます。
-最大10個のJobまで表示可能で、再度対象Jobを選択してAddボタンを押下することで、追加でジョブパラメータを取得します。
-先頭に”*”が付いているパラメータ値は、e-Console上のプルダウンの通し番号を表示しています。詳細は、e-Console上の表示値を確認してください。
+	備考	承認	審査	設計
+		更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	25/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
 
-  
-Fig. 3.5.7.2.1 Job parameterタブ
+④	Event history ボタン	Event history 画面を表示します。
 
-No.	Item	Description
-①	検索条件設定エリア	検索したいパラメータの検索条件を設定します。
-②	Job一覧テーブル	検索結果のJob一覧を表示します。
-③	Addボタン	Job一覧テーブルで選択したJobに紐づくジョブパラメータをパラメータ一覧に追加表示します。
-④	Deleteボタン	対象Jobを表示対象から削除します。
- 
-⑤	Model表示欄	対象Jobの装置モデルを表示します。
-⑥	Tool表示欄	対象Jobの装置名称を表示します。
-⑦	Recipe表示欄	対象Jobのレシピ名を表示します。
-⑧	Lot表示欄	対象Jobのロット名を表示します。
-⑨	Lot start time表示欄	対象Jobのロット実行開始日時を表示します。
-⑩	パラメータ一覧	パラメータのPathと値を表示します。
-⑪	ジョブ間差異表示ボタン	All parametersが選択されている場合は全パラメータを表示し、Only differencesが選択されている場合はジョブ間差があるパラメータのみを表示します。
-⑫	CSV downloadボタン	パラメータ一覧をCSV形式のファイルでダウンロードします。
-All parametersの場合は全パラメータ一覧をダウンロードし、Only differencesの場合はジョブ間差があるパラメータのみダウンロードします。
+4.2.1.6.2.	Job parameter タブ
+Job parameter タブ画面では、まず始めに対象 Fab から選択する。
+Fab を選択すると、存在する建屋と機種、該当装置が自動的に設定される。
+取得したい Job の検索期間、レシピ名、ロット名を入力して「Search」ボタンを押下することで、選択した全ての装置から、条件に一致した全ての情報が取得され、Job 一覧テーブルに表示される。
+Job 一覧テーブルからパラメータを確認したい Job を選択し、Add ボタンを押下すると、対象のジョブパラメータが取得され、 Job 別に表示される。
+最大 10 個の Job まで表示可能で、再度対象 Job を選択して Add ボタンを押下することで、追加でジョブパラメータを取得する。
+先頭に「*」が付いているパラメータ値は、e-Console 上のプルダウンの通し番号を表示しています。詳細は、e-Console 上の表示値を確認する。
+
+図 4-16 Job parameter タブ
+
+No.
+①	Item
+検索条件設定エリア	Description
+検索したいパラメータの検索条件を設定する。
+②	Job 一覧テーブル	検索結果の Job 一覧を表示する。
+③	Add ボタン	Job 一覧テーブルで選択した Job に紐づくジョブパラメータをパラメータ一覧
+に追加表示する。
+④	Delete ボタン	対象 Job を表示対象から削除する。
+⑤	Model 表示欄	対象 Job の装置モデルを表示する。
+⑥	Tool 表示欄	対象 Job の装置名称を表示する。
+⑦	Recipe 表示欄	対象 Job のレシピ名を表示する。
+⑧	Lot 表示欄	対象 Job のロット名を表示する。
+⑨	Lot start time 表示欄	対象 Job のロット実行開始日時を表示する。
+⑩	パラメータ一覧	パラメータの Path と値を表示する。
+⑪	ジョブ間差異表示ボタン	All parameters が選択されている場合は全パラメータを表示し、Only
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	26/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+		differences が選択されている場合はジョブ間差があるパラメータのみを表示
+する。
+⑫	CSV download ボタン	パラメータ一覧をCSV 形式のファイルでダウンロードしする。
+All parameters の場合は全パラメータ一覧をダウンロードし、Only differences
+の場合はジョブ間差があるパラメータのみダウンロードしする。
+
+4.2.2.	シミュレーション（Simulation）
+4.2.2.1.	Wafer output optimizer対象外
+4.2.2.2.	Recipe optimization対象外
+4.2.3.	履歴確認（History） 【EST-00045】
+4.2.3.1.	「Event history」タブ
+本機能は Liplus 開発 Phase1 委託で TX-101 の対応を実施した。本委託ではＮＺ２Ｃの機種対応を行う。
+4.2.3.2.	「Error history」タブ
+本機能は Liplus 開発 Phase1 委託で TX-101 の対応を実施した。本委託ではＮＺ２Ｃの機種対応を行う。
+4.2.3.3.	「Anomaly history」タブ対象外
+4.2.3.4.	「Parameter history」タブ
+本機能は Liplus 開発 Phase1 委託で TX-101 の対応を実施した。本委託ではＮＺ２Ｃの機種対応を行う。
+
+4.3.	Liplus の機種共通化 【EST-00045】
+I 線・Krf 線 NIL（IAP、NZ2C）に対して、Liplus 機種の共通化を対応する。
+Liplus AP の「t_function」テーブルのデータのように、各機能に対する機種設定をソースコード修正やビルドを行うことなく、 Liplus のマスタデータ管理機能である「DataImporter」を通じて設定できるように対応し、DataImporter の基本 Excel の Template を提供する。
+
+4.3.1.	検索部のシリーズコンボボックス
+Liplus の全体機能において、機能ごとの対象シリーズの設定につれて、Liplus 画面の検索部に表示されるシリーズコンボボックスの項目を管理できるように対応する。
+「イベント履歴」機能の設定の例を以下に示す。
+
+・	対象シリーズが 6300、IAP の場合
+メニュー
+イベント履歴
+
+6300	シリーズ
+イベント履歴	IAP
+表 4-6 「6300、IAP」シリーズ対象
 
 
- 
-
-
-4.3.	TX-101のTM （Thermal Module）データ可視化機能開発
-Job別、Wafer別TMデータグラフを表示する。
-BRTLのMIDは180151。
-sno=122376465,sec=1748861364,usec=896098,sip=150.61.140.1,tid=18949,C(j=167140,w=44818,r=-1,wil=1,p=-1,s=-1,m=-1,jt=-1,tt=-1,f=-1,lu=-1,pu=-1,u=-1,a=-1,pi=-1,stg=311)
-2025/06/02 19:49:24.896098+0900, WFTM  :180151:St:VCS1 Type:IC Addr:8094 Name:MCIN_SMOUT BIT1 Value:0.000
-ContextInfoのｊ＝ＪｏｂＩＤ、ｗ＝ＷａｆｅｒＩＤ
-ＴＭＶａｌｍａｔＤａｔａイベントで収集してＬｉｐｌｕｓＤＢの新規ＤＢテーブルに保存。
-ユーザが見たいＴｙｐｅのパラメータ（Ｎａｍｅ）を選択したら対するデータをグラフで表示する。
-
-UI검색조건)
-기간별? Job별? Wafer별?모두?
-아니면 기간 내 수행 한 Job 목록 띄워주고 Job 선택하면 그에 해당하는 Item 골라서 표시???
-X축은 Job/Wafer/시간 선택 할 수 있게??
 
 
 
-4.4.	LiplusUIの機種共通化
-5550,6300,6400,IAP,NZ2Cなど以後に追加できる新規装置シリーズの交通対応のためLiplus機能毎に使用可能機種の設定して機種交通化対応を行う。
 
-- MasterDataImport기능 추가
-- Import하는Excel의Template제공
-- 메뉴 전체에 대한 접근 권한 제한? 검색 조건의 시리즈에 목록 안뜨게?
-- MasterData로 Database에 관리하여 소스코드 수정/빌드 없이 유연하게 대응 가능
-- 시리즈 검색 콤보박스 전용 공통으로 하나 만들어서 마스터데이터에서 해당 메뉴에 대한 권한 있는 애들만 반환하게 하는거 만들어놓으면 공수 크게 안들듯(전체 기능의 시리즈 콤보박스 바꿔주는 노가다작업만)
-- 업그레이드 시 DB에 초기값 설정하는 sql 추가
 
-4.5.	装置毎にステーション情報のマスタデータ化
-Liplus를 사용하는 장치 시리즈의 종류가 늘어남에 따라 장치의 특성 상 Station을 사용하는 기종들에 대해 각 Station에 대한 코드값, 이름, 사용유무에 대한 유동적인 관리의 필요성이 있다.
-각 시리즈에 대한 모델별로 향후 Station 갯수나 이름이 다를 수 있기 때문에, 모델 별 Station 정보를 마스터데이터로 관리하여 소스코드의 수정/빌드 없이 DataImporter를 통하여 관리할 수 있도록 대응한다.
-시리즈, 모델 별 Station 코드와 이름을 저장하고, 각 Station에 대한 사용 유무 또한 지정하여 검색 조건에서 미사용 중인 Station에 대해서는 표시하지 않는 것으로 대응한다.
 
-- MasterDataImport기능 추가
-- Import하는Excel의Template제공
-- 공수 부족하면 DeMSS 처럼 UI 대응까지??
 
-5.	成果物
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	27/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+
+図 4-17 「6300、IAP」シリーズ対象のイベント履歴の検索部
+
+・	対象シリーズが 6300、IAP、5550 の場合（5550 シリーズ追加）
+メニュー
+イベント履歴
+
+6300	シリーズ
+イベント履歴	IAP	
+イベント履歴	5550	
+表 4-7 「6300、IAP、5550」シリーズ対象
+
+図 4-18 「6300、IAP、5550」シリーズ対象のイベント履歴の検索部
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	28/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+4.4.	装置毎にステーション情報のマスタデータ化 【EST-00045】
+NIL（IAP、NZ2C）装置に対応するにあたり、ステーションのコード、名称、使用可否の管理が必要である。
+ステーションの使用可否や名称が変更される可能性があるため、ステーションに関する情報（コード、名称、使用可否）をマスターデータとして管理し、ソースコードの修正やビルドをしなくて、DataImporter を通じて設定できるようにする。
+また、ステーションの使用可否に応じて、Liplus 画面に使用しないステーションは表示されないようにする。
+
+4.4.1.	ステーション情報管理
+ステーションのコード、名称、使用可否はデータベースに保存して、データベースの情報を使用して画面に表示する。本機能の対応にてステーションがない機種に影響を与えないように対応する。
+「DataImporter」機能を使用してステーション情報を管理できるように対応し、DataImporter の基本 Excel の Template を提供する。
+
+
+6300
+シリーズ	モデル
+FPA-6300ES6a	
+6kvss50	装置	ステーションコード
+0	ステーション名
+Common
+IAP	TX_101	TX-101	0	Common
+IAP	TX_101	TX-101	101	PS1
+IAP	TX_101	TX-101	102	PS2
+IAP	TX_101	TX-101	103	PS3
+IAP	TX_101	TX-101	104	PS4
+IAP	TX_101	TX-101	201	JS1
+IAP	TX_101	TX-101	311	VCS1
+IAP	TX_101	TX-101	411	BCS1
+表 4-8 装置ごとにステーション情報管理の例
+
+4.4.2.	未使用ステーションの対応
+TX-101 の場合、17 個のステーションを持っているので、画面に表示される項目が増加するので、使用しないステーションは、表示しないようにする。
+以下に、ステーション使用有無設定の対応前・後の例を示す。
+
+図 4-19 ステーション使用有無設定の対応前
+
+シリーズ
+IAP	モデル
+TX_101	装置
+TX-101	ステーションコード
+0	ステーション名
+Common	使用有無
+X
+IAP	TX_101	TX-101	101	PS1	〇
+IAP	TX_101	TX-101	102	PS2	〇
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	29/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+IAP	TX_101	TX-101	103	PS3	X
+IAP	TX_101	TX-101	104	PS4	X
+IAP	TX_101	TX-101	201	JS1	〇
+IAP	TX_101	TX-101	311	VCS1	〇
+IAP	TX_101	TX-101	312	VCS2	〇
+IAP	TX_101	TX-101	313	VCS3	X
+IAP	TX_101	TX-101	314	VCS4	X
+IAP	TX_101	TX-101	315	VCS5	X
+IAP	TX_101	TX-101	316	VCS6	X
+IAP	TX_101	TX-101	411	BCS1	〇
+IAP	TX_101	TX-101	412	BCS2	〇
+IAP	TX_101	TX-101	413	BCS3	X
+IAP	TX_101	TX-101	414	BCS4	X
+IAP	TX_101	TX-101	415	BCS5	X
+IAP	TX_101	TX-101	416	BCS6	X
+表 4-9 ステーション使用有無設定の対応後
+
+図 4-20 ステーション使用有無設定の対応後
+
+
+ 成果物
 本件の成果物は、以下の通りとする。
 ・ 機能仕様書
 ・ 詳細設計書
@@ -411,17 +1378,66 @@ Liplus를 사용하는 장치 시리즈의 종류가 늘어남에 따라 장치�
 ・ テスト報告書
 ・ レビュー議事録
 
- 
-6.	テスト要件
+ テスト要件
 本件の成果物の作成においては、以下の条件を満たすテストを経るものとする。
-・ ソフトウェアの動作は、Lithography Plus/MDASが規定する正式なOSバージョン上で確認する。
-・ 動作確認に用いるハードウェアは、性能不足に起因するタイムアウト等で機能未達を引き起こすことが無い限り、Lithography Plus/MDASが規定する正式なハードウェアスペックを必ずしも満足しなくても良い。（タイムアウトが発生しない限りは、応答速度は不問とする。）また、上述のOSが動作するのであれば、物理はハードウェアではなく、仮想マシン上でのテストでも構わない。
-・ 装置データの取得部分のテストは、TX-101実機の代わりに委託元が指定するシミュレータ(VSS)を用いる。
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
+ 
+Th 番号	EST-00043∼00045	Th 名	TX-101,NZ2C Lithography Plus 開発 Phase3	ページ数	30/30
+担当 Gr.	DS	担当者	李 景烈
+機種	Lithography Plus	訂版	1.0
+
+・ ソフトウェアの動作は、Lithography Plus/MDAS が規定する正式なOS バージョン上で確認する。
+・ 動作確認に用いるハードウェアは、性能不足に起因するタイムアウト等で機能未達を引き起こすことが無い限り、 Lithography Plus/MDAS が規定する正式なハードウェアスペックを必ずしも満足しなくても良い。（タイムアウトが発生しない限りは、応答速度は不問とする。）また、上述の OS が動作するのであれば、物理はハードウェアではなく、仮想マシン上でのテストでも構わない。
+・ 装置データの取得部分のテストは、TX-101、NZ2C 実機の代わりに委託元が指定するシミュレータ(VSS)を用いる。
+
 
 テストの要件は以下の通りする。
 ・ 各機能ことに必要なログが正しく収集できるかを確認する
 ・ 機能対応のために収集するログの保存期間が過ぎたら削除されることを確認
-・ 収集したログがLiplusのUI上に正しく表示されること
+・ 収集したログが Liplus の UI 上に正しく表示されること
 ・ 可視化機能の場合正しい結果が表示されているか
-・ 本機能の対応で既存装置のLiplus機能に影響がないこと
+・ 本機能の対応で既存装置の Liplus 機能に影響がないこと
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+備考	承認	審査	設計
+	更新日付：
+氏名：	更新日付：
+氏名：	更新日付： 2025/7/31
+氏名：
+李 景烈
 
