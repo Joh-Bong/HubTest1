@@ -1,0 +1,47 @@
+  
+--- 호출 구분  C# 기반 
+
+tagId = EPC 로 부터 받은 값
+
+if (!TryHexToAscii(tagId, out string asciiTag))
+  {
+     // ASCII 아닌 태그는 그냥 무시 
+      return;
+  }  
+
+--호출 함수  
+private bool TryHexToAscii(string hex, out string ascii)
+  {
+      ascii = null;
+
+      // 길이 홀수면 HEX 아님
+      if (string.IsNullOrEmpty(hex) || hex.Length % 2 != 0)
+          return false;
+
+      var sb = new StringBuilder();
+
+      try
+      {
+          for (int i = 0; i < hex.Length; i += 2)
+          {
+              int value = Convert.ToInt32(hex.Substring(i, 2), 16);
+
+              //  NULL 패딩 나오면 끝
+              if (value == 0)
+                  break;
+
+              // 출력 가능한 ASCII만 허용
+              if (value < 32 || value > 126)
+                  return false;
+
+              sb.Append((char)value);
+          }
+
+          ascii = sb.ToString();
+          return true;
+      }
+      catch
+      {
+          return false;
+      }
+  }
